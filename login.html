@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        *{
+            padding: 0%;
+            margin: 0%;
+            box-sizing: border-box;
+            font-family: 'Inspiration', cursive;
+            font-family: 'Poppins', sans-serif;
+        }
+        img{
+            width: 50px;
+            height: 50px;
+            background: none;
+        }
+        .login{
+            width: 450px;
+            height:380px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items:center;
+            flex-direction: column;     
+            border-radius: 1px;
+            background-color: #3333;
+            box-shadow: 0 0 10px black;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+       .login h1{
+            font-weight: bolder;   
+            color: white;
+            font-weight: bold;
+        }
+        p{
+            font-size: 13px;
+        }
+        p a{
+            text-decoration: none;
+            color: crimson;
+        }
+        input{
+            border: none;
+            outline: none;
+            background-color: transparent;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: white;
+        }
+      
+        input::placeholder{
+            color: white;
+            font-weight: 900;
+        }
+        input:hover::placeholder{
+            transform: translateX(15px);
+        }
+        input:focus::placeholder{
+            transform: none;
+            visibility: hidden;
+        }
+        button{
+        background: #959595;
+        background: linear-gradient(to right, #959595 0%, #0D0D0D 46%, #010101 50%, #0A0A0A 53%, #4E4E4E 76%, #383838 87%, #1B1B1B 100%);
+        border: none;
+        outline: none;
+        padding: 10px 50px;
+        color: white;
+        border-radius: 5px;    
+        transition: all 0.5s linear;    
+        }
+        button:hover{
+        background: #000000;
+        background: linear-gradient(to left, #000000 0%, #FFFFFF 51%, #000000 100%);
+        cursor: pointer;
+        color: black;
+        }
+        .error{
+            font-size: 12px;
+            color: crimson;
+        }
+        .input1.error input{
+            border-bottom-color:red ;
+        }
+        .input1.success input{
+            border-bottom-color:green ;
+        }
+        button a{
+            text-decoration: none;
+            color: white;
+        }
+        input{
+            background-image: url(mail.png);
+        }
+        img{
+            width: 20px;
+            height: 20px;    
+        }
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h1>Login <span style="color: black;">!</span></h1>
+        <div class="input1">
+            <input type="email" name="username" id="name" placeholder="Email" >
+            <label for="name"><img src="email.png" alt="mail"></label>
+            <div class="error"></div>
+        </div>
+        <div class="input1">
+            
+            <input type="password" name="password" id="password" placeholder="Password" >
+            <label for="password"><img src="key.png" alt="key"></label>
+            <div class="error"></div>
+        </div>
+        <button id="btn" >Login</button>
+        <p>Don't have an account? <a href="FormValidation.html">sign up</a></p>
+    </div>
+
+    <!--js script-->
+    <script>
+    
+        var username=document.querySelector("#name");
+        var userpassword=document.querySelector("#password");
+        var button=document.querySelector("#btn");
+        //var parentele=username.parentElement;
+     //   console.log(parentele)
+        
+        button.addEventListener("click",function(event){
+            event.preventDefault();
+           // Validate();
+          if (Validate(true)) {
+            console.log("finsihjjjj");  
+            
+          }
+         
+          else{
+            console.log("finsih");
+            
+        }
+            
+        })
+
+        function Validate(){
+            var valuseranme=username.value.trim();
+            var valpasssword=userpassword.value.trim();
+
+            
+            if(valuseranme===""){
+                setInputError(username,"Please enter your email");
+                console.log("hb")
+            }
+            else{
+                setInputSuccess(username);
+            }
+
+            if(valpasssword===""){
+                setInputError(userpassword,"Please enter your password");
+                console.log("hb")
+            }
+            else if(valpasssword.length<8 ){
+                setInputError(userpassword,"Enter above 8 characters")
+            }
+            else{
+                setInputSuccess(userpassword);
+            }
+           
+            if(valuseranme.length>=1 && valpasssword.length>=8){
+               function callalert(msg){
+                alert(msg,3000)
+               }
+                window.location.href="index.html";
+            }
+                
+            
+            
+        }
+
+        function setInputError(element,message) {
+            var parentele=element.parentElement;
+            var newElement=parentele.querySelector(".error");
+            var addElement=newElement.innerText=message;
+         
+
+        }
+
+        function setInputSuccess(element) {
+            var parentele=element.parentElement;
+            var newElement=parentele.querySelector(".error");
+            var setText=newElement.innerText="";
+        }
+
+        //alert modify
+        window.alert=function(msg,timeout=null){
+            console.log("ln")
+        }        
+
+
+      //  function run(){
+        //    window.location.href="./FormValidation.html";
+        //}
+    </script>
+
+</body>
+</html>
